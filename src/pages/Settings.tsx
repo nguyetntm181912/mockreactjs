@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Formik, Form, Field } from "formik";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -37,7 +38,6 @@ function Settings() {
 
   // upload files
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [preview, setPreview] = useState<any>(null);
 
   const currentUser: UserType = useSelector(
@@ -78,9 +78,7 @@ function Settings() {
           <Formik
             enableReinitialize={true}
             initialValues={{
-              // image: currentUser.image || "",
-
-              file: currentUser.image || "",
+              file: File || "",
 
               username: currentUser.username || "",
 
@@ -95,8 +93,6 @@ function Settings() {
                 const formData = new FormData();
 
                 formData.append("file", values.file);
-
-                console.log(values.file);
 
                 formData.append("upload_preset", "tj5ptm50");
 
@@ -151,7 +147,11 @@ function Settings() {
                     <input
                       id="image"
                       className={formStyle.field}
-                      value={values.file.name ? values.file.name : values.file}
+                      value={
+                        values.file instanceof File
+                          ? values.file.name
+                          : values.file
+                      }
                       onChange={(event) => {
                         setPreview(event.target.value);
 
@@ -173,7 +173,7 @@ function Settings() {
                       name="file"
                       type="file"
                       value={""}
-                      onChange={(event) => {
+                      onChange={(event: any) => {
                         const file = new FileReader();
                         file.onload = () => setPreview(file.result);
                         file.readAsDataURL(event.currentTarget.files[0]);
