@@ -1,6 +1,5 @@
 import axios from "axios";
 import { put, call, takeEvery } from "redux-saga/effects";
-import { PayloadAction } from "@reduxjs/toolkit";
 
 import {
   createComment,

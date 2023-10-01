@@ -2,6 +2,7 @@ import ReactPaginate from "react-paginate";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CustomUserPagination = ({ handleOffSet }: any) => {
   let articlesLength = useSelector(
     (state: { favoritedArticles: { articleCount: number } }) =>
