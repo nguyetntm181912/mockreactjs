@@ -10,7 +10,7 @@ import { CommentPost } from "../../../models/comment";
 import { TakeableChannel } from "redux-saga";
 
 const postComment = (action: {
-  payload: { comment: CommentPost; slug: string };
+  payload: { comment: { comment: CommentPost }; slug: string };
 }) => {
   return axios.post(
     `https://api.realworld.io/api/articles/${action.payload.slug}/comments`,
@@ -24,7 +24,7 @@ const postComment = (action: {
 };
 
 export function* createCommentHandler(action: {
-  payload: { comment: CommentPost; slug: string };
+  payload: { comment: { comment: CommentPost }; slug: string };
 }): unknown {
   try {
     const comment = yield call(postComment, action);

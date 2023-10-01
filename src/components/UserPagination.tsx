@@ -16,7 +16,7 @@ const CustomUserPagination = ({ handleOffSet }: any) => {
   if (articlesLength <= 5) {
     return;
   } else {
-    articlesLength = Math.ceil(articlesLength / 10);
+    articlesLength = Math.ceil(articlesLength / 5);
     return (
       <ReactPaginate
         key={location}
