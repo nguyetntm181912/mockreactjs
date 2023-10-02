@@ -88,7 +88,7 @@ function Settings() {
 
               password: "123456" || "",
             }}
-            onSubmit={async (values) => {
+            onSubmit={async (values: any) => {
               if (values.file.name) {
                 const formData = new FormData();
 
